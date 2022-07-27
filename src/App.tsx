@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import './App.css';
 import { PokeSelect } from './components/PokeSelect';
+import { Header } from './containers/Header';
 
 const App: FC = () => {
   return (
     <div>
-      <PokeSelect game="2" />
+      <Header />
     </div>
   )
 };
