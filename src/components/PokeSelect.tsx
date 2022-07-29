@@ -5,7 +5,6 @@ import AsyncSelect from 'react-select/async';
 interface PokeSelectProps {
   game: string;
 }
-
 const getPokemon = async (game: string) => {
   const pokemon = game.includes('+')
     ? await getMultiPokdex(game)
@@ -15,20 +14,15 @@ const getPokemon = async (game: string) => {
   });
   return pokemonValues;
 };
-
 export const PokeSelect: FC<PokeSelectProps> = (props) => {
   const { game } = props;
   const filterPokemon = async (inputValue: string) => {
     const pokemonList = await getPokemon(game);
     return pokemonList.filter((pkmn) => {
       return pkmn.label.includes(inputValue.toUpperCase());
-    })
+    });
   };
   return (
-    <AsyncSelect
-      cacheOptions
-      defaultOptions
-      loadOptions={filterPokemon}
-    />
+    <AsyncSelect cacheOptions defaultOptions loadOptions={filterPokemon} />
   );
 };
