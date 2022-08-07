@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import { IconType } from 'react-icons';
+import { MenuAlt2Icon, MenuAlt3Icon } from '@heroicons/react/solid';
+import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const SideMenuItemBaseClasses = (active?: boolean) => {
@@ -16,16 +16,18 @@ const SideMenuItemBaseClasses = (active?: boolean) => {
   active:text-light-color-pressed
   `
   }
+  rounded-full
   p-3
   flex
   items-center
   gap-2
+  whitespace-nowrap
   `;
 };
 export interface SideMenuItemProps {
   link: string;
   label: string;
-  icon?: React.ReactNode;
+  icon: React.ReactNode;
   active?: boolean;
 }
 export const SideMenuItem: FC<SideMenuItemProps> = (
@@ -43,5 +45,26 @@ export interface SideMenuProps {
   items: Array<SideMenuItemProps>;
 }
 export const SideMenu: FC<SideMenuProps> = (props: SideMenuProps) => {
-  return <div></div>;
+  const { items } = props;
+  const [active, setActive] = useState(false);
+  return active ? (
+    <div className="bg-light-accent-background">
+      <div className="flex gap-4 items-end p-2">
+        <span className="text-light-accent-color font-bold text-lg">
+          PokeBuilder
+        </span>
+        <button onClick={() => setActive(!active)}>
+          <MenuAlt2Icon className="h-8 w-8 text-light-accent-color" />
+        </button>
+      </div>
+      {active && items.map((itemProps) => <SideMenuItem {...itemProps} />)}
+    </div>
+  ) : (
+    <div className="bg-light-accent-background flex flex-col gap-6 items-center p-2 text-light-text-color">
+      <button onClick={() => setActive(!active)}>
+        <MenuAlt3Icon className="h-8 w-8 text-light-accent-color" />
+      </button>
+      {items.map((itemProps) => <Link to={itemProps.link}>{itemProps.icon}</Link>)}
+    </div>
+  );
 };

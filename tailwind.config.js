@@ -12,6 +12,7 @@ module.exports = {
         'light-accent-color': '#ff7c7c',
         'light-accent-color-hover': '#E26767',
         'light-accent-color-pressed': '#C55454',
+        'light-accent-background': '#fbf7f4',
       },
     },
   },
