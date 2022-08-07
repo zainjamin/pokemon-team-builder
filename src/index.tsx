@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Homepage from './containers/Homepage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Builder } from './containers/Builder';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +13,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/builder" element={<Builder game="4"/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

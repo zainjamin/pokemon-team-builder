@@ -3,16 +3,11 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import Logo from '../images/logo.png';
 import { SideMenu } from '../components/SideMenu';
-import { HomeIcon, UserIcon } from '@heroicons/react/solid';
 
 export const Homepage: FC = () => {
-  const sideMenuItems = [
-    { link: '/', label: 'Home', icon: <HomeIcon className="w-6" /> },
-    { link: '/my_account', label: 'My Account', icon: <UserIcon className="w-6" /> }
-  ];
   return (
     <div className="flex">
-      <SideMenu items={sideMenuItems} />
+      <SideMenu />
       <div className="flex flex-col justify-between min-h-screen basis-full">
         <Header />
         <div className="flex">

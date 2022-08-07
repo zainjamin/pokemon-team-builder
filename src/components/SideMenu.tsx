@@ -1,5 +1,5 @@
-import { MenuAlt2Icon, MenuAlt3Icon } from '@heroicons/react/solid';
-import React, { FC, useEffect, useState } from 'react';
+import { BriefcaseIcon, HomeIcon, MenuAlt2Icon, MenuAlt3Icon, UserIcon } from '@heroicons/react/solid';
+import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const SideMenuItemBaseClasses = (active?: boolean) => {
@@ -41,11 +41,12 @@ export const SideMenuItem: FC<SideMenuItemProps> = (
     </Link>
   );
 };
-export interface SideMenuProps {
-  items: Array<SideMenuItemProps>;
-}
-export const SideMenu: FC<SideMenuProps> = (props: SideMenuProps) => {
-  const { items } = props;
+export const SideMenu: FC = () => {
+  const items = [
+    { link: '/', label: 'Home', icon: <HomeIcon className="w-6" /> },
+    { link: '/my_account', label: 'My Account', icon: <UserIcon className="w-6" /> },
+    { link: '/builder', label: 'Team Builder', icon: <BriefcaseIcon className="w-6" /> },
+  ];
   const [active, setActive] = useState(false);
   return active ? (
     <div className="bg-light-accent-background">
