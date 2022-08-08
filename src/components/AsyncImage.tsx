@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 
 interface AsyncImageProps {
   src: Promise<any>;
@@ -8,5 +8,9 @@ export const AsyncImage: FC<AsyncImageProps> = (props: AsyncImageProps) => {
   useEffect(() => {
     props.src.then((src) => setLoadedSrc(src));
   }, [props.src]);
-  return <img src={loadedSrc} className="max-w-full"/>
-}
+  return (
+    <div className="flex justify-center items-center">
+      <img src={loadedSrc} className="h-16 w-fit" />
+    </div>
+  );
+};

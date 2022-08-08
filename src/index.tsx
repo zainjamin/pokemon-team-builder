@@ -13,7 +13,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/builder" element={<Builder game="4"/>} />
+        <Route path="/builder" element={<Builder game="6"/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
