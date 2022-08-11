@@ -3,6 +3,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import Logo from '../images/logo.png';
 import { SideMenu } from '../components/SideMenu';
+import { Link } from 'react-router-dom';
 
 export const Homepage: FC = () => {
   return (
@@ -16,15 +17,17 @@ export const Homepage: FC = () => {
             <h1 className="text-light-text-color text-3xl text-center font-bold">
               Welcome to <br /> Pokemon-Team-Builder
             </h1>
-            <button
-              className="
-            bg-light-accent-color text-light-text-color rounded-full px-4 py-1 font-semibold
-            hover:bg-light-accent-color-hover active:bg-light-accent-color-pressed
-            hover:text-light-text-color-hover active:text-light-text-color-pressed
-            "
-            >
-              Get Started
-            </button>
+            <Link to="/builder">
+              <button
+                className="
+              bg-light-accent-color text-light-text-color rounded-full px-4 py-1 font-semibold
+              hover:bg-light-accent-color-hover active:bg-light-accent-color-pressed
+              hover:text-light-text-color-hover active:text-light-text-color-pressed
+              "
+              >
+                Get Started
+              </button>
+            </Link>
           </div>
         </div>
         <Footer />

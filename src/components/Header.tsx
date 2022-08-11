@@ -12,8 +12,7 @@ const HeaderBaseClass = () => {return `
 export const Header: FC = () => {
   return (
     <div className={HeaderBaseClass()}>
-      <Link to="/log_in">Log In</Link>
-      <Link to="/sign_up">Sign Up</Link>
+      <Link to="/my_teams">My Teams</Link>
     </div>
   );
 };
