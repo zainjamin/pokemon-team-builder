@@ -72,15 +72,15 @@ export const SideMenu: FC = () => {
           <MenuAlt2Icon className="h-8 w-8 text-light-accent-color" />
         </button>
       </div>
-      {active && items.map((itemProps) => <SideMenuItem {...itemProps} />)}
+      {active && items.map((itemProps, index) => <SideMenuItem {...itemProps} key={index}/>)}
     </div>
   ) : (
     <div className="bg-light-accent-background flex flex-col gap-6 items-center p-2 text-light-text-color">
       <button onClick={() => setActive(!active)}>
         <MenuAlt3Icon className="h-8 w-8 text-light-accent-color" />
       </button>
-      {items.map((itemProps) => (
-        <Link to={itemProps.link}>{itemProps.icon}</Link>
+      {items.map((itemProps, index) => (
+        <Link to={itemProps.link} key={index}>{itemProps.icon}</Link>
       ))}
     </div>
   );

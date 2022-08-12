@@ -31,6 +31,7 @@ export const PokeSelect: FC<PokeSelectProps> = (props) => {
       onChange={(newValue) => {
         newValue && onChange(newValue.value);
       }}
+      key={game}
     />
   );
 };

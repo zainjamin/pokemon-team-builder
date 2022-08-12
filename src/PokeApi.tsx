@@ -22,7 +22,7 @@ export const getLocation = async (pokemon: string, game: string) => {
       location.version_details.forEach(
         (versionDetail: { version: { name: string } }) => {
           if (
-            versionDetail.version.name === getGenerationFromPokedex(game)[1]
+            getGenerationFromPokedex(game)[1].split('-').includes(versionDetail.version.name)
           ) {
             if(!data) data = location.location_area.name;
           }

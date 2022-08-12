@@ -10,10 +10,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/builder" element={<Builder game="6"/>} />
+        <Route path="/builder" element={<Builder />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
