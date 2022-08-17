@@ -9,6 +9,8 @@ import {
   getLocation,
 } from '../PokeApi';
 import MissingNo from '../images/missingno.png';
+import { stringify } from 'querystring';
+import { Prompt } from '../components/Prompt';
 
 export interface Pokemon {
   name: string;
@@ -23,6 +25,7 @@ export interface Pokemon {
 export const Builder: FC = () => {
   const [game, setGame] = useState('');
   const [team, setTeam] = useState(Array<Pokemon>(6));
+  const [savePrompt, setSavePrompt] = useState(false);
   const teamDataChange = (slot: number) => {
     return (newPokemonName: string) => {
       fetchPokemon(newPokemonName).then((data) => {
@@ -63,7 +66,13 @@ export const Builder: FC = () => {
     { value: '9', label: 'Pokemon Black 2 / White 2' },
     { value: '12+13+14', label: 'Pokemon X / Y' },
   ];
-  console.log(team);
+  const saveButton = (teamName: string) => {
+    const storedTeams = localStorage.getItem('teams');
+    const savedTeams = storedTeams && storedTeams !== 'undefined' ? JSON.parse(storedTeams) : [];
+    savedTeams[savedTeams.length] = { team, teamName };
+    localStorage.setItem('teams', JSON.stringify(savedTeams));
+    setSavePrompt(false);
+  }
   return (
     <div className="flex min-h-screen">
       <SideMenu />
@@ -183,6 +192,7 @@ export const Builder: FC = () => {
               hover:bg-light-accent-color-hover active:bg-light-accent-color-pressed
               hover:text-light-text-color-hover active:text-light-text-color-pressed
               "
+                onClick={() => setSavePrompt(true)}
               >
                 Save
               </button>
@@ -192,12 +202,14 @@ export const Builder: FC = () => {
               hover:bg-light-accent-color-hover active:bg-light-accent-color-pressed
               hover:text-light-text-color-hover active:text-light-text-color-pressed
               "
+                onClick={() => setTeam(Array<Pokemon>(6))}
               >
                 Reset
               </button>
           </div>
         )}
       </div>
+      {savePrompt && <Prompt onCancel={() => setSavePrompt(false)} onSubmit={saveButton} title="Team Name" helpText='Enter a team name'/>}
     </div>
   );
 };
