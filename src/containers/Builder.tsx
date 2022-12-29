@@ -9,7 +9,6 @@ import {
   getLocation,
 } from '../PokeApi';
 import MissingNo from '../images/missingno.png';
-import { stringify } from 'querystring';
 import { Prompt } from '../components/Prompt';
 
 export interface Pokemon {
@@ -68,11 +67,12 @@ export const Builder: FC = () => {
   ];
   const saveButton = (teamName: string) => {
     const storedTeams = localStorage.getItem('teams');
-    const savedTeams = storedTeams && storedTeams !== 'undefined' ? JSON.parse(storedTeams) : [];
+    const savedTeams =
+      storedTeams && storedTeams !== 'undefined' ? JSON.parse(storedTeams) : [];
     savedTeams[savedTeams.length] = { team, teamName };
     localStorage.setItem('teams', JSON.stringify(savedTeams));
     setSavePrompt(false);
-  }
+  };
   return (
     <div className="flex min-h-screen">
       <SideMenu />
@@ -83,7 +83,10 @@ export const Builder: FC = () => {
           </h1>
           <Select
             options={gameOptions}
-            onChange={(newGame) => newGame && setGame(newGame.value)}
+            onChange={(newGame) => {
+              newGame && setGame(newGame.value);
+              setTeam(Array<Pokemon>(6));
+            }}
           />
         </div>
         {game && (
@@ -133,7 +136,9 @@ export const Builder: FC = () => {
         )}
         {team[0] && (
           <div>
-            <h1 className="text-light-text-color font-bold text-2xl">3. Review</h1>
+            <h1 className="text-light-text-color font-bold text-2xl">
+              3. Review
+            </h1>
             <table
               className="border rounded-lg border-separate overflow-x-auto w-full"
               cellSpacing={0}
@@ -187,29 +192,39 @@ export const Builder: FC = () => {
         {team[0] && (
           <div className="flex items-center justify-center gap-4">
             <button
-                className="
+              className="
               bg-light-accent-color text-light-text-color rounded-full px-4 py-1 font-semibold
               hover:bg-light-accent-color-hover active:bg-light-accent-color-pressed
               hover:text-light-text-color-hover active:text-light-text-color-pressed
               "
-                onClick={() => setSavePrompt(true)}
-              >
-                Save
-              </button>
-              <button
-                className="
+              onClick={() => setSavePrompt(true)}
+            >
+              Save
+            </button>
+            <button
+              className="
               bg-light-accent-color text-light-text-color rounded-full px-4 py-1 font-semibold
               hover:bg-light-accent-color-hover active:bg-light-accent-color-pressed
               hover:text-light-text-color-hover active:text-light-text-color-pressed
               "
-                onClick={() => setTeam(Array<Pokemon>(6))}
-              >
-                Reset
-              </button>
+              onClick={() => {
+                setTeam(Array<Pokemon>(6));
+                setGame("2");
+              }}
+            >
+              Reset
+            </button>
           </div>
         )}
       </div>
-      {savePrompt && <Prompt onCancel={() => setSavePrompt(false)} onSubmit={saveButton} title="Team Name" helpText='Enter a team name'/>}
+      {savePrompt && (
+        <Prompt
+          onCancel={() => setSavePrompt(false)}
+          onSubmit={saveButton}
+          title="Team Name"
+          helpText="Enter a team name"
+        />
+      )}
     </div>
   );
 };
