@@ -3,7 +3,7 @@ This tool allows you to plan out your next playthrough for a Pokemon game! Selec
 
 ## Usage
 ### Website
-Visit [Pokemon Team Builder](https://zainsalman.me/pokemon-team-builder) to get started!
+Visit [Pokemon Team Builder](https://zains.dev/pokemon-team-builder) to get started!
 ### Local Environment
 Run `npm start` to run a local environment of this project.
 
