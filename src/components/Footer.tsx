@@ -17,7 +17,7 @@ export const Footer: FC = () => {
       <a target="_blank" href="https://github.com/zainjamin">
         <AiFillGithub />
       </a>
-      <a target="_blank" href="https://zainsalman.me">
+      <a target="_blank" href="https://teambuilder.zains.dev">
         <CgWebsite />
       </a>
     </div>
